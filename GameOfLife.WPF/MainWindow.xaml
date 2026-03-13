@@ -6,6 +6,94 @@
         xmlns:local="clr-namespace:GameOfLife.WPF"
         mc:Ignorable="d"
         Title="Game Of Life" Height="800" Width="1400" >
-    <Grid Name="GameGrid">
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Background" Value="#3a7bd5"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="#2d2d30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Control Bar -->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center">
+            
+                <Button x:Name="StartButton"
+                        Content="Start"
+                        Background="#26820E"
+                        Click="StartClicked"/>
+                
+                <Button x:Name="PauseButton"
+                        Content="Pause"
+                        Background="#E8D509"
+                        Click="PauseClicked"/>
+                
+                <Button x:Name="StepButton"
+                        Content="Step"
+                        Background="Bisque"
+                        Click="StepClicked"/>
+                
+                <Button x:Name="ResetButton"
+                        Content="Reset"
+                        Background="LightGray"
+                        Click="ResetClicked"/>
+                
+                <Button x:Name="RandomButton"
+                        Content="Random"
+                        Background="LightGray"
+                        Click="RandomClicked"/>
+                
+                <Button x:Name="StopButton"
+                        Content="End"
+                        Background="DarkRed"
+                        Click="StopClicked"/>
+                
+                <Button x:Name="SaveButton"
+                        Content="Save"
+                        Background="Lavender"
+                        Click="SaveClicked"/>
+                
+                <Button x:Name="LoadButton"
+                        Content="Load"
+                        Background="Lavender"
+                        Click="LoadClicked"/>
+                
+                
+                <TextBlock x:Name="GenerationText"
+                           Width="200"
+                           Height="30"
+                           Text="Generation: 0"
+                           TextAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0"
+                           FontSize="18"
+                           Foreground="Black"
+                           Background="#C0C0C0"/>
+            
+            
+        </StackPanel>
+        
+        <!-- Zone de simulation -->
+        <Border Grid.Row="1"
+                Margin="10"
+                Background="Black"
+                BorderBrush="Gray"
+                BorderThickness="2">
+
+            <Grid x:Name="GameGrid"/>
+        </Border>
     </Grid>
 </Window>

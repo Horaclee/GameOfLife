@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace GameOfLife;
 
 public class Grid
@@ -18,23 +20,34 @@ public class Grid
             for (var y = 0; y < Height; y++)
                 Cells[x, y] = new Cell();
     }
-
-    public int CountNeighbors(int x, int y)
+    
+    public string SerializeGrid()
     {
-        var count = 0;
-        
-        for (var dx = -1; dx <=  1; dx++)
-        for (var dy = -1; dy <= 1; dy++)
-        {
-            if (dx == 0 && dy == 0) continue;
-            
-            var nx = x + dx;
-            var ny = y + dy;
+        var sb = new StringBuilder();
 
-            if (nx < 0 || nx >= Width || ny < 0 || ny >= Height) continue;
-            if (Cells[nx, ny].IsAlive) count++;
+        for (var y = 0; y < Height; y++)
+        {
+            for (var x = 0; x < Width; x++)
+            {
+                sb.Append(Cells[x, y].IsAlive ? "1" : "0");
+            }
+            sb.AppendLine();
         }
-        
-        return count;
+
+        return sb.ToString();
+    }
+
+    public void LoadFromString(string gridData)
+    {
+        var lines = gridData.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+
+        for (var y = 0; y < Math.Min(Height, lines.Length); y++)
+        {
+            var line = lines[y];
+            for (var x = 0; x < Math.Min(Width, line.Length); x++)
+            {
+                Cells[x, y].IsAlive = line[x] == '1';
+            }
+        }
     }
 }

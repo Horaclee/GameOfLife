@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
+using Services;
 using WpfGrid = System.Windows.Controls.Grid;
 
 namespace GameOfLife.WPF;
@@ -10,9 +12,11 @@ public partial class MainWindow
     private new const int Width = 1400 / CellSize; // Number of columns in the grid (width of the grid)
     private new const int Height = 800 / CellSize; // Number of rows in the grid (height of the grid)
     
-    private readonly Game _game;
+    private Game _game;
     private readonly GameLoop _gameLoop;
     private readonly GridRenderer _renderer;
+    private int _generation = 0;
+    private DataBaseService _dataBase = new DataBaseService();
     
     // Create Game, Render the grid, Attach Events, Start Game Loop, Draw game
     public MainWindow()
@@ -28,7 +32,6 @@ public partial class MainWindow
 
         _gameLoop = new GameLoop(200);
         _gameLoop.Tick += Update;
-        _gameLoop.Start();
         
         _renderer.Draw(_game);
     }
@@ -37,6 +40,10 @@ public partial class MainWindow
     private void Update()
     {
         _game.Update();
+
+        _generation++;
+        GenerationText.Text = $"Generation: {_generation}";
+        
         _renderer.Draw(_game);
     }
 
@@ -63,14 +70,59 @@ public partial class MainWindow
 
         _renderer.Draw(_game);
     }
+    
 
-    // PAUSE the game on SpaceBar
-    protected override void OnKeyDown(KeyEventArgs e)
+    private void StartClicked(object sender, RoutedEventArgs e) => _gameLoop.Start();
+    
+
+    private void PauseClicked(object sender, RoutedEventArgs e) => _gameLoop.Stop();
+    
+    private void StepClicked(object sender, RoutedEventArgs e)
     {
-        if (e.Key != Key.Space) return;
-        if (_gameLoop.IsRunning)
-            _gameLoop.Stop();
-        else
-            _gameLoop.Start();
+        _gameLoop.Stop();
+        _game.Update();
+        _generation++;
+        GenerationText.Text = $"Generation: {_generation}";
+        _renderer.Draw(_game);
+    }
+    
+    private void ResetClicked(object sender, RoutedEventArgs e)
+    {
+        _gameLoop.Stop();
+        _game.Clear();
+        _generation = 0;
+        GenerationText.Text = $"Generation: {_generation}";
+        _renderer.Draw(_game);
+    }
+    
+    private void RandomClicked(object sender, RoutedEventArgs e)
+    {
+        _game.Randomize();
+        _generation = 0;
+        GenerationText.Text = $"Generation: {_generation}";
+        _renderer.Draw(_game);
+    }
+    
+    private void StopClicked(object sender, RoutedEventArgs e)
+    {
+        _gameLoop.Stop();
+        _game = new Game(Width, Height);
+        _renderer.Draw(_game);
+    }
+
+    private void SaveClicked(object sender, RoutedEventArgs e)
+    {
+        var gridData = _game.Grid.SerializeGrid();
+        DataBaseService.SaveGeneration(_generation, gridData);
+    }
+
+    private void LoadClicked(object sender, RoutedEventArgs e)
+    {
+        var data = DataBaseService.LoadLastGeneration();
+        if (data == null) return;
+        _game.Grid.LoadFromString(data.Value.GridData);
+        _generation = data.Value.GenerationNumber;
+        GenerationText.Text = $"Generation: {_generation}";
+        _renderer.Draw(_game);
     }
 }

@@ -9,19 +9,26 @@ This project separates the **game logic** (Core) from the **UI** (WPF) and allow
 
 - Empty grid at startup  
 - Click on cells to toggle alive/dead  
-- Adjustable grid size and cell size  
-- Play/Pause simulation using the **Space** key  
-- Separate architecture for **Game Logic**, **Renderer**, and **Timer**  
+- Play/Pause/Step/Reset/Clear/Random buttons
+- Generation counter display
+- Tracks alive and dead cells per generation
+- Save/load generations locally in SQLite
+- Optional integration with GameStats API to save results online
+- Separate architecture for Game Logic, Renderer, and Timer
+- Fast, smooth WPF UI
 
 ---
 
 ## Project Structure
 GameOfLife/
-- Core/ # Game logic (Game, Grid, Cell)
-- GameOfLife.WPF/ # WPF UI (MainWindow, GridRenderer, GameLoop)
-- GameOfLife.sln # Solution file
-- .gitignore # Ignored files for build and IDE
-- README.md # Project documentation
+- Core/                 # Game logic (Game, Grid, Cell)
+- GameOfLife.WPF/       # WPF UI (MainWindow, GridRenderer, GameLoop,  GameStatsService)
+- Services/             # SQLite database service
+- GameStatsApi/         # ASP.NET Core Web API for storing game statistics
+- GameOfLife.sln        # Solution file
+- .gitignore            # Ignored files for build and IDE
+- README.md             # Project documentation
+
 
 ---
 
@@ -40,21 +47,24 @@ GameOfLife/
 git clone https://github.com/Horaclee/GameOfLife.git
 cd GameOfLife
 ```
-
 2. Open GameOfLife.sln in Rider or Visual Studio.
-
 3. Set GameOfLife.WPF as the startup project.
+4. Build and run the solution.
 
-4.Build and run the solution.
 You should see an empty grid, ready to interact with.
 
 ---
 
 ## Controls
 
-Mouse click: Toggle a cell alive/dead
-Space key: Start / Pause simulation
-
+- Mouse click:     Toggle a cell alive/dead
+- Space key:       Start / Pause simulation
+- Start button:	   Start auto simulation
+- Pause button:	   Pause simulation
+- Step button:     Advance one generation
+- Reset button:    Clear all cells and reset generation counter
+- Clear button:    Clear the grid without affecting settings
+- Random button:	 Fill the grid randomly with alive/dead cells
 --- 
 
 ## Customization
@@ -77,5 +87,55 @@ private const int GridHeight = 40; // number of rows
 
 Change the timer interval in GameLoop (milliseconds):
 ```bash
-gameLoop = new GameLoop(200); // 200 ms per generation
+gameLoop = new GameLoop(20); // 200 ms per generation
 ```
+
+---
+
+## DataBase (SQLite)
+Table: Generations
+
+| Column | Type  |
+|:-------- |:--------| 
+|Id|INTEGER PRIMARY KEY AUTOINCREMENT| 
+|GenerationNumber|INTEGER|
+|Width|INTEGER|
+|Height|INTEGER|
+|CellsAlive|INTEGER|
+|CellsDead|INTEGER|
+|Grid|TEXT|
+|CreatedAt|TEXT|
+
+- Save generations with Save button.
+- Load the last generation with Load Last button.
+
+---
+
+## GameStats API
+
+- GET /api/Game:              Get all results
+- POST /api/GameResults:      Add new game result
+- GET /api/Game/best:         Get the last result
+- GET /api/GameResults/{id}:  Get result by ID
+
+---
+
+## Teck Stack
+- Languages: C#, XAML
+- Frameworks: .NET 9, WPF, Entity Framework Core
+- Database: SQLite
+- Tools: Visual Studio / Rider, Git/GitHub
+
+---
+
+## Future Improvements
+
+- Add AI for automated gameplay
+- Detect and highlight specific patterns
+- Enhanced leaderboard via API
+- Export/import grid states
+- More statistics and analytics
+
+---
+
+## Screenshots

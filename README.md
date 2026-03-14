@@ -9,13 +9,13 @@ This project separates the **game logic** (Core) from the **UI** (WPF) and allow
 
 - Empty grid at startup  
 - Click on cells to toggle alive/dead  
--Play/Pause/Step/Reset/Clear/Random buttons
--Generation counter display
--Tracks alive and dead cells per generation
--Save/load generations locally in SQLite
--Optional integration with GameStats API to save results online
--Separate architecture for Game Logic, Renderer, and Timer
--Fast, smooth WPF UI
+- Play/Pause/Step/Reset/Clear/Random buttons
+- Generation counter display
+- Tracks alive and dead cells per generation
+- Save/load generations locally in SQLite
+- Optional integration with GameStats API to save results online
+- Separate architecture for Game Logic, Renderer, and Timer
+- Fast, smooth WPF UI
 
 
 ---
@@ -57,14 +57,14 @@ You should see an empty grid, ready to interact with.
 
 ## Controls
 
-Mouse click: Toggle a cell alive/dead
-Space key: Start / Pause simulation
-Start button	Start auto simulation
-Pause button	Pause simulation
-Step button	Advance one generation
-Reset button	Clear all cells and reset generation counter
-Clear button	Clear the grid without affecting settings
-Random button	Fill the grid randomly with alive/dead cells
+- Mouse click:     Toggle a cell alive/dead
+- Space key:       Start / Pause simulation
+- Start button:	   Start auto simulation
+- Pause button:	   Pause simulation
+- Step button:     Advance one generation
+- Reset button:    Clear all cells and reset generation counter
+- Clear button:    Clear the grid without affecting settings
+- Random button:	 Fill the grid randomly with alive/dead cells
 --- 
 
 ## Customization

@@ -109,10 +109,10 @@ CreatedAt	          TEXT
 
 ## GameStats API
 
-GET /api/Game – Get all results
-POST /api/GameResults – Add new game result
-GET /api/Game/best – Get the last result
-GET /api/GameResults/{id} – Get result by ID
+- GET /api/Game:              Get all results
+- POST /api/GameResults:      Add new game result
+- GET /api/Game/best:         Get the last result
+- GET /api/GameResults/{id}:  Get result by ID
 
 
 ## Teck Stack

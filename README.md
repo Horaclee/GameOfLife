@@ -90,6 +90,7 @@ Change the timer interval in GameLoop (milliseconds):
 gameLoop = new GameLoop(20); // 200 ms per generation
 ```
 
+---
 
 ## DataBase (SQLite)
 Table: Generations
@@ -108,6 +109,8 @@ Table: Generations
 - Save generations with Save button.
 - Load the last generation with Load Last button.
 
+---
+
 ## GameStats API
 
 - GET /api/Game:              Get all results
@@ -115,6 +118,7 @@ Table: Generations
 - GET /api/Game/best:         Get the last result
 - GET /api/GameResults/{id}:  Get result by ID
 
+---
 
 ## Teck Stack
 - Languages: C#, XAML
@@ -122,6 +126,7 @@ Table: Generations
 - Database: SQLite
 - Tools: Visual Studio / Rider, Git/GitHub
 
+---
 
 ## Future Improvements
 
@@ -130,5 +135,7 @@ Table: Generations
 - Enhanced leaderboard via API
 - Export/import grid states
 - More statistics and analytics
+
+---
 
 ## Screenshots

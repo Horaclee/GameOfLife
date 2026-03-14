@@ -50,6 +50,7 @@ cd GameOfLife
 2. Open GameOfLife.sln in Rider or Visual Studio.
 3. Set GameOfLife.WPF as the startup project.
 4. Build and run the solution.
+
 You should see an empty grid, ready to interact with.
 
 ---

@@ -96,14 +96,14 @@ Table: Generations
 
 | Column | Type  |
 |:-------- |:--------| 
-|Id | INTEGER PRIMARY KEY AUTOINCREMENT | 
-|GenerationNumber	|  INTEGER|
-|Width	      |        INTEGER|
-|Height	      |      INTEGER|
-|CellsAlive	  |      INTEGER|
-|CellsDead	  |        INTEGER|
-|Grid	        |      TEXT|
-|CreatedAt	  |        TEXT|
+|Id|INTEGER PRIMARY KEY AUTOINCREMENT| 
+|GenerationNumber|INTEGER|
+|Width|INTEGER|
+|Height|INTEGER|
+|CellsAlive|INTEGER|
+|CellsDead|INTEGER|
+|Grid|TEXT|
+|CreatedAt|TEXT|
 
 - Save generations with Save button.
 - Load the last generation with Load Last button.

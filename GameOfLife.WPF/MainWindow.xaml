@@ -26,6 +26,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
+        
         <!-- Control Bar -->
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Left"
@@ -72,9 +73,31 @@
                         Click="LoadClicked"/>
                 
                 <TextBlock x:Name="GenerationText"
-                           Width="200"
+                           Width="150"
                            Height="30"
                            Text="Generation: 0"
+                           TextAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0"
+                           FontSize="18"
+                           Foreground="Black"
+                           Background="#C0C0C0"/>
+                
+                <TextBlock x:Name="CellsAlive"
+                           Width="150"
+                           Height="30"
+                           Text="Cells Alive: 0"
+                           TextAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0"
+                           FontSize="18"
+                           Foreground="Black"
+                           Background="#C0C0C0"/>
+                
+                <TextBlock x:Name="CellsDead"
+                           Width="150"
+                           Height="30"
+                           Text="Cells Dead: 0"
                            TextAlignment="Left"
                            VerticalAlignment="Center"
                            Margin="10,0,0,0"

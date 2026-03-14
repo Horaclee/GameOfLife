@@ -42,7 +42,12 @@ public partial class MainWindow
         _game.Update();
 
         _generation++;
+        var cellsAlive = _game.CountCellsAlive();
+        var cellsDead = _game.Grid.Width * _game.Grid.Height - cellsAlive;
         GenerationText.Text = $"Generation: {_generation}";
+        CellsAlive.Text = $"Cells Alive: {cellsAlive}";
+        CellsDead.Text = $"Cells Dead: {cellsDead}";
+        
         
         _renderer.Draw(_game);
     }

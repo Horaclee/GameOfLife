@@ -94,15 +94,15 @@ gameLoop = new GameLoop(20); // 200 ms per generation
 ## DataBase (SQLite)
 Table: Generations
 
-Column	            Type
-Id	                INTEGER PRIMARY KEY AUTOINCREMENT
-GenerationNumber	  INTEGER
-Width	              INTEGER
-Height	            INTEGER
-CellsAlive	        INTEGER
-CellsDead	          INTEGER
-Grid	              TEXT
-CreatedAt	          TEXT
+  Column	            Type
+- Id	                INTEGER PRIMARY KEY AUTOINCREMENT
+- GenerationNumber	  INTEGER
+- Width	              INTEGER
+- Height	            INTEGER
+- CellsAlive	        INTEGER
+- CellsDead	          INTEGER
+- Grid	              TEXT
+- CreatedAt	          TEXT
 
 - Save generations with Save button.
 - Load the last generation with Load Last button.

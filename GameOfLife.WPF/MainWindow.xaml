@@ -71,7 +71,6 @@
                         Background="Lavender"
                         Click="LoadClicked"/>
                 
-                
                 <TextBlock x:Name="GenerationText"
                            Width="200"
                            Height="30"

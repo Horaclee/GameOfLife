@@ -30,7 +30,7 @@ public partial class MainWindow
         
         AttachEvents();
 
-        _gameLoop = new GameLoop(200);
+        _gameLoop = new GameLoop(10);
         _gameLoop.Tick += Update;
         
         _renderer.Draw(_game);
@@ -110,10 +110,17 @@ public partial class MainWindow
         _renderer.Draw(_game);
     }
 
-    private void SaveClicked(object sender, RoutedEventArgs e)
+    private async void SaveClicked(object sender, RoutedEventArgs e)
     {
         var gridData = _game.Grid.SerializeGrid();
-        DataBaseService.SaveGeneration(_generation, gridData);
+        var cellsAlive = _game.CountCellsAlive();
+        var cellsDead = _game.Grid.Width * _game.Grid.Height - cellsAlive;
+        DataBaseService.SaveGeneration(_generation, _game.Grid.Width, _game.Grid.Height, cellsAlive, cellsDead, gridData);
+
+        
+        var service = new GameStatsService();
+        await service.SendResultAsync(_game.Grid.Width, _game.Grid.Height, cellsAlive, cellsDead, _generation);
+        MessageBox.Show("Saved!");
     }
 
     private void LoadClicked(object sender, RoutedEventArgs e)

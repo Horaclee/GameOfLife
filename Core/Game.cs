@@ -43,6 +43,16 @@ public class Game
         
         return count;
     }
+
+    public int CountCellsAlive()
+    {
+        var result = 0;
+        for (var x = 0; x < Grid.Width; x++)
+            for (var y = 0; y < Grid.Height; y++)
+                if (Grid.Cells[x, y].IsAlive)
+                    result++;
+        return result;
+    }
     
     public void Update()
     {

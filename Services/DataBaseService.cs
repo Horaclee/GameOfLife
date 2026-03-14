@@ -21,6 +21,10 @@ public class DataBaseService
         command.CommandText = """
                               CREATE TABLE IF NOT EXISTS Generations (
                                   Id Integer PRIMARY KEY AUTOINCREMENT,
+                                  Width Interger,
+                                  Height Interger,
+                                  CellsAlive Integer,
+                                  CellsDead Integer,
                                   GenerationNumber Integer,
                                   Grid Text,
                                   CreatedAt Text);
@@ -29,18 +33,22 @@ public class DataBaseService
         connection.Close();
     }
 
-    public static void SaveGeneration(int generationNumber, string gridData)
+    public static void SaveGeneration(int generationNumber, int  width, int height, int cellsAlive, int cellsDead, string gridData)
     {
         using var connection = new SqliteConnection(ConnectionString);
         connection.Open();
 
         var command = connection.CreateCommand();
         command.CommandText = """
-                              INSERT INTO Generations (GenerationNumber, Grid, CreatedAt)
-                              VALUES ($gen, $grid, $date);
+                              INSERT INTO Generations (GenerationNumber, Width, Height, CellsAlive, CellsDead, Grid, CreatedAt)
+                              VALUES ($gen,$width, $height, $alive, $dead, $grid, $date);
                               """;
         
         command.Parameters.AddWithValue("$gen", generationNumber);
+        command.Parameters.AddWithValue("$width", width);
+        command.Parameters.AddWithValue("$height", height);
+        command.Parameters.AddWithValue("$alive", cellsAlive);
+        command.Parameters.AddWithValue("$dead", cellsDead);
         command.Parameters.AddWithValue("$grid", gridData);
         command.Parameters.AddWithValue("$date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
         

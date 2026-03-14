@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife.WPF", "GameOfLif
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{4E33F4D3-910C-41CF-98DC-254826703250}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStatsApi", "GameStatsApi\GameStatsApi.csproj", "{6FFAE7D9-32FF-40B8-9AB6-F6171FD33E6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{4E33F4D3-910C-41CF-98DC-254826703250}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E33F4D3-910C-41CF-98DC-254826703250}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E33F4D3-910C-41CF-98DC-254826703250}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FFAE7D9-32FF-40B8-9AB6-F6171FD33E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FFAE7D9-32FF-40B8-9AB6-F6171FD33E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FFAE7D9-32FF-40B8-9AB6-F6171FD33E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FFAE7D9-32FF-40B8-9AB6-F6171FD33E6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

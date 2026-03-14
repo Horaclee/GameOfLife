@@ -17,7 +17,6 @@ This project separates the **game logic** (Core) from the **UI** (WPF) and allow
 - Separate architecture for Game Logic, Renderer, and Timer
 - Fast, smooth WPF UI
 
-
 ---
 
 ## Project Structure
